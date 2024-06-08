@@ -46,7 +46,7 @@
             Console.WriteLine("Perfeito! Chegou a hora de apresentar nossas opções de espaço que melhor se adeque à cerimônia desejada");
             foreach (var espaco in espacos)
             {
-                Console.WriteLine($"Espaço {espaco.nomeEspaco}: R$ {espaco.valorEspaco}");
+                Console.WriteLine($"Espaço {espaco.nomeEspaco} - Capacidade: {espaco.capacidadeMaxima} pessoas: R$ {espaco.valorEspaco}");
             }
             Console.WriteLine("\nDigite o nome do espaço que te atende melhor:");
             char nomeEspaco = char.Parse(Console.ReadLine());
@@ -62,23 +62,41 @@
         }
         static void contratarCasamento()
         {
-            Console.WriteLine("Quantas convidados terão no casamento?");
-            int qtdConvidados = int.Parse(Console.ReadLine());
-            if (qtdConvidados < 0)
+            int qtdConvidados;
+            while (true)
             {
-                Console.WriteLine("Não é possível ter 0 convidados no casamento.");
+                Console.WriteLine("Quantas convidados terão no casamento?");
+                if (int.TryParse(Console.ReadLine(), out qtdConvidados))
+                {
+                    if (qtdConvidados < 1)
+                    {
+                        Console.WriteLine("Não é possível ter 0 convidados no casamento. Tente novamente.");
+                    }
+                    else if (qtdConvidados > 500)
+                    {
+                        Console.WriteLine("Infelizmente nosso maior espaço comporta apenas 500 convidados. Tente novamente.");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Por favor, insira um número válido.");
+                }
             }
-            if (qtdConvidados > 500)
+
+            Espaco espacoDesejado = menuEscolhaEspaco();
+            if (espacoDesejado != null)
             {
-                Console.WriteLine("infelizmente nosso maior espaço coporta apenas 500 convidados");
+                Console.WriteLine("Certo, agora precisamos saber a data que você deseja realizar o casamento. Segue abaixo algumas de nossas regras:\n\n");
+                Console.WriteLine("- Os casamentos são realizados somente às sextas e sábados.\n- Agendamentos de datas apenas com 30 dias de antecedência\n- Realizamos apenas um casamento por dia");
+                Console.ReadLine();
             }
             else
             {
-                Espaco espacoDesejado = menuEscolhaEspaco();
-                Console.WriteLine("Certo, agora precisamos saber a data que você deseja realizar o casamento. Segue abaixo algumas de nossas regras:\n\n");
-                Console.WriteLine("- Os casamentos são realizados somente às sextas e sábados.\n- Agendamentos de datas apenas com 30 dias de antecedência\n- Realizamos apenas um casamento por dia");
-            
-            Console.ReadLine();
+                Console.WriteLine("Espaço não encontrado. Tente novamente.");
             }
         }
         static void contratarFormatura()
