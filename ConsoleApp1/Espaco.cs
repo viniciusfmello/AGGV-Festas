@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+public class Espaco
+{
+    public char nomeEspaco;
+    public double capacidadeMaxima;
+    public bool disponibilidade;
+    public double valorEspaco;
 
-
-
-    public class Espaco
+    public Espaco(char nomeEspaco, int capacidadeMaxima, double valorEspaco)
     {
-        public string nomeEspaco;
-        public int capacidadeMaxima;
-        public bool disponibilidade;
-        public double valorEspaco;
-
-        public Espaco(string nomeEspaco, int capacidadeMaxima)
-        {
-            this.nomeEspaco = nomeEspaco;
-            this.capacidadeMaxima = capacidadeMaxima;
-        }
+        this.nomeEspaco = nomeEspaco;
+        this.capacidadeMaxima = capacidadeMaxima;
+        this.valorEspaco = valorEspaco;
     }
-
+}
