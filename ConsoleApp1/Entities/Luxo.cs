@@ -5,19 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-public class Standard : ITipoEvento
+public class Luxo : ITipoEvento
 {
     public List<Produto> _listaProdutos;
 
-    public Standard()
+    public Luxo()
     {
         _listaProdutos = new List<Produto>();
     }
 
-    public void DefinirTipoEvento(TipoEvento tipoEvento)
-    {
-        
-    }
 }
-

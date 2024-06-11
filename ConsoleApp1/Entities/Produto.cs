@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 public class Produto
 {
     public string _nome;
@@ -18,7 +19,3 @@ public class Produto
     }
 }
 
-public enum TipoProduto
-{
-   
-}

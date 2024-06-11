@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1;
+using ConsoleApp1.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,14 @@ public class Evento
     public ITipoEvento _tipoEvento;
     public ICategoriaEvento _categoriaEvento;
 
-    public Evento(DateTime data, int qtdConvidados, Espaco espaco, ITipoEvento tipoEvento, ICategoriaEvento categoriaEvento)
+
+    public Evento(DateTime data, int qtdConvidados, Espaco espaco, TipoEvento tipoEvento, CategoriaEvento categoriaEvento)
     {
         _dataEvento = data;
         _qtdConvidados = qtdConvidados;
         _espacoEvento = espaco;
-        _tipoEvento = tipoEvento;
-        _categoriaEvento = categoriaEvento;
+        _tipoEvento = ITipoEvento.DefinirTipoEvento(tipoEvento);
+        _categoriaEvento = ICategoriaEvento.DefinirCategoriaEvento(categoriaEvento);
     }
 }
 
