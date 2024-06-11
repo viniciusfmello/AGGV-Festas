@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public interface ITipoEvento
+namespace ConsoleApp1.Enums
 {
-    void DefinirTipoEvento(TipoEvento tipoEvento);
-}
-
-public class TipoEvento
-{
-    
+    public enum TipoEvento
+    {
+        Premier,
+        Luxo,
+        Standard
+    }
 }
