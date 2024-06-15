@@ -18,7 +18,7 @@ namespace ConsoleApp1.Interfaces
             else if (tipoEvento == TipoEvento.Standard)
                 return 50 * qtdPessoas;
             else
-                return null;
+                return 0;
         }
     }
 }
