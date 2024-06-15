@@ -1,17 +1,13 @@
-﻿namespace ConsoleApp1
+﻿using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace ConsoleApp1
 {
     internal class Program
     {
-        static Espaco[] espacos = {
-            new Espaco('A', 100, 10000),
-            new Espaco('B', 100,10000),
-            new Espaco('C', 100,10000),
-            new Espaco('D', 100,10000),
-            new Espaco('E', 200,17000),
-            new Espaco('F', 200,17000),
-            new Espaco('G', 50,8000),
-            new Espaco('H', 500,35000)
-            };
+        static Empresa empresa = new Empresa();
+        static Evento evento;
+        static Espaco espaco;
         static void Main(string[] args)
         {
             Console.WriteLine("Bem-vindo ao AGGV Festas\n");
@@ -40,80 +36,39 @@
                     Console.WriteLine("Opção inválida, digite apenas uma opção existente");
                     break;
             }
-        }
-        static Espaco menuEscolhaEspaco()
-        {
-            Console.WriteLine("Perfeito! Chegou a hora de apresentar nossas opções de espaço que melhor se adeque à cerimônia desejada");
-            foreach (var espaco in espacos)
-            {
-                Console.WriteLine($"Espaço {espaco.nomeEspaco} - Capacidade: {espaco.capacidadeMaxima} pessoas: R$ {espaco.valorEspaco}");
-            }
-            Console.WriteLine("\nDigite o nome do espaço que te atende melhor:");
-            char nomeEspaco = char.Parse(Console.ReadLine());
-            for (int i = 0; i < espacos.Length; i++)
-            {
-                if (nomeEspaco == espacos[i].nomeEspaco)
-                {
-                    return espacos[i];
-                }
-            }
-            return null;
-
+            
         }
         static void contratarCasamento()
         {
-            int qtdConvidados;
-            while (true)
+            Console.WriteLine("Digite a quantidade de convidados que terão no casamento");
+            int quantidadeConvidados = int.Parse(Console.ReadLine());
+            if (quantidadeConvidados < 0 || quantidadeConvidados > 500)
             {
-                Console.WriteLine("Quantas convidados terão no casamento?");
-                if (int.TryParse(Console.ReadLine(), out qtdConvidados))
-                {
-                    if (qtdConvidados < 1)
-                    {
-                        Console.WriteLine("Não é possível ter 0 convidados no casamento. Tente novamente.");
-                    }
-                    else if (qtdConvidados > 500)
-                    {
-                        Console.WriteLine("Infelizmente nosso maior espaço comporta apenas 500 convidados. Tente novamente.");
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Por favor, insira um número válido.");
-                }
+                Console.WriteLine("Nós não temos espaço adequado para suportar a quantidade de pessoas informada");
             }
+            Espaco espacoCasamento = empresa.EscolherMelhorEspaco(quantidadeConvidados);
+            //informar para o usuário o espaço selecionado
+            DateTime ProcurarData = empresa.ProcurarDataMaisProxima(espacoCasamento);
+            //informar para o usuário a data e o espaço que será realizado o casamento 
 
-            Espaco espacoDesejado = menuEscolhaEspaco();
-            if (espacoDesejado != null)
-            {
-                Console.WriteLine("Certo, agora precisamos saber a data que você deseja realizar o casamento. Segue abaixo algumas de nossas regras:\n\n");
-                Console.WriteLine("- Os casamentos são realizados somente às sextas e sábados.\n- Agendamentos de datas apenas com 30 dias de antecedência\n- Realizamos apenas um casamento por dia");
-                Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine("Espaço não encontrado. Tente novamente.");
-            }
+
+
         }
         static void contratarFormatura()
         {
-            menuEscolhaEspaco();
+            
         }
         static void contratarFestaEmpresa()
         {
-            menuEscolhaEspaco();
+          
         }
         static void contratarFestaAniversario()
         {
-            menuEscolhaEspaco();
+           
         }
         static void contratarEventoLivre()
         {
-            menuEscolhaEspaco();
+            
         }
 
     }

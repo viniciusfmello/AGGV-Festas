@@ -21,7 +21,7 @@ public class Evento
         _qtdConvidados = qtdConvidados;
         _espacoEvento = espaco;
         _tipoEvento = ITipoEvento.DefinirTipoEvento(tipoEvento);
-        _categoriaEvento = ICategoriaEvento.DefinirCategoriaEvento(categoriaEvento);
+        //_categoriaEvento = ICategoriaEvento.DefinirCategoriaEvento(categoriaEvento);
     }
 }
 

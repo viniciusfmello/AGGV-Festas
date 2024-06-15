@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ public class Espaco
 {
     public char nomeEspaco;
     public double capacidadeMaxima;
-    public bool disponibilidade;
+    public List<DisponibilidadeDia> disponibilidade;
     public double valorEspaco;
 
     public Espaco(char nomeEspaco, int capacidadeMaxima, double valorEspaco)
@@ -15,5 +16,6 @@ public class Espaco
         this.nomeEspaco = nomeEspaco;
         this.capacidadeMaxima = capacidadeMaxima;
         this.valorEspaco = valorEspaco;
+        this.disponibilidade = new List<DisponibilidadeDia>();
     }
 }

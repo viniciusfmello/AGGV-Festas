@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public interface ICategoriaEvento
 {
-    public static ICategoriaEvento DefinirCategoriaEvento(CategoriaEvento categoriaEvento)
+    /*public static ICategoriaEvento DefinirCategoriaEvento(CategoriaEvento categoriaEvento)
     {
         if (categoriaEvento == CategoriaEvento.Casamento)
             return new Casamento();
@@ -19,6 +19,6 @@ public interface ICategoriaEvento
             return new FestaAniversario();
         else
             return null;
-    }
+    }*/
 }
 
