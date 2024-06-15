@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 public class Luxo : ITipoEvento
 {
-    public List<Produto> _listaProdutos;
+    public List<Produto> _listaProdutosLuxo = new List<Produto>()
+    {
+
+    };
+
 
     public Luxo()
     {
-        _listaProdutos = new List<Produto>();
+        
     }
 
 }

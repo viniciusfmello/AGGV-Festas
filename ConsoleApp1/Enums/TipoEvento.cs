@@ -10,6 +10,9 @@ namespace ConsoleApp1.Enums
     {
         Premier,
         Luxo,
-        Standard
+        Standard,
+        Nulo,
+        Geral,
+        LuxoIPremier
     }
 }

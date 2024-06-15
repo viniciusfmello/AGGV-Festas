@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 public class Premier : ITipoEvento
 {
-    public List<Produto> _listaProdutos;
 
     public Premier()
     {
-        _listaProdutos = new List<Produto>();
+
     }
 
 }
