@@ -10,49 +10,74 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
+            bool opcaoValida = false;
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Bem-vindo ao AGGV Festas\n");
             Console.ResetColor();
             Console.WriteLine("Qual tipo de evento você deseja contratar?\n");
             Console.WriteLine("1 - Casamento\n2 - Formatura\n3 - Festa de empresa\n4 - Festa de aniversário\n5 - Evento livre\n");
             int opcao = int.Parse(Console.ReadLine());
-            //tratar excessão
             switch (opcao)
             {
                 case 1:
                     contratarCasamento();
+                    opcaoValida = true;
                     break;
                 case 2:
                     contratarFormatura();
+                    opcaoValida = true;
                     break;
                 case 3:
                     contratarFestaEmpresa();
+                    opcaoValida = true;
                     break;
                 case 4:
                     contratarFestaAniversario();
+                    opcaoValida = true;
                     break;
                 case 5:
                     contratarEventoLivre();
+                    opcaoValida = true;
                     break;
                 default:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Opção inválida, digite apenas uma opção existente");
+                    Console.ResetColor();
+                    opcaoValida = false;
                     break;
-            }
+            }while (!opcaoValida);
         }
-        static void contratarCasamento()
-        {
-            TipoEvento tipoEvento = TipoEvento.Nulo;
-            Console.WriteLine("\nDigite a quantidade de convidados que terão no casamento");
-            int quantidadeConvidados = int.Parse(Console.ReadLine());
-            if (quantidadeConvidados < 0 || quantidadeConvidados > 500)
+        
+            static void contratarCasamento()
             {
-                Console.WriteLine("\nNós não temos espaço adequado para suportar a quantidade de pessoas informada");
-            }
-            Espaco espacoCasamento = empresa.EscolherMelhorEspaco(quantidadeConvidados);
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"\nO espaço que mais se adequa para a quantidade de convidados para o casamento é: {espacoCasamento}");
-            Console.ResetColor();
+                TipoEvento tipoEvento = TipoEvento.Nulo;
+                Espaco espacoCasamento = null;
+                int quantidadeConvidados = 0;
 
+            Console.WriteLine("Temos 8 tipos de espaços incríveis para você, com capacidades variando entre 100, 200 e 500 convidados!");
+            do
+                {
+                    Console.WriteLine("\nDigite a quantidade de convidados desejada no casamento:");
+                     quantidadeConvidados = int.Parse(Console.ReadLine());
+
+                    if (quantidadeConvidados <= 0 || quantidadeConvidados > 500)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nNós não temos espaço adequado para suportar a quantidade de pessoas informada. A quantidade máxima que nossos espaços suportam é de 500 pessoas");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        espacoCasamento = empresa.EscolherMelhorEspaco(quantidadeConvidados);
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"\nO espaço que mais se adequa para a quantidade de convidados para o casamento é: {espacoCasamento}");
+                        Console.ResetColor();
+                        break;
+                    }
+                } while (true);
+
+               
+        
             DateTime ProcurarData = empresa.ProcurarDataMaisProxima(espacoCasamento);
             Console.WriteLine($"\nNossos casamentos são realizados na data mais próxima da atual, contando 30 dias a partir do dia de hoje.");
             Console.WriteLine("\nComo são realizados apenas um casamento por dia, é possível que haja um casamento já agendado para este espaço na data mais próxima. Logo, calcularemos a próxima data mais próxima.\n");
@@ -91,6 +116,7 @@ namespace ConsoleApp1
                         break;
                 }
             } while (tipoEvento == TipoEvento.Nulo);
+
             Casamento Casamento = new Casamento(ProcurarData, quantidadeConvidados, espacoCasamento, tipoEvento, CategoriaEvento.Casamento);
 
             Console.WriteLine("\nAgora vou precisar que você escolha as quantidades de bebidas que ofereceremos em seu casamento: ");
