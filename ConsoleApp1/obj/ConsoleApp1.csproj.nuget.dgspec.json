@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gabri\\Desktop\\AGGV-Festas\\AGGV-Festas\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\vinic\\Desktop\\projects\\AGGV-Festas\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gabri\\Desktop\\AGGV-Festas\\AGGV-Festas\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\vinic\\Desktop\\projects\\AGGV-Festas\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\AGGV-Festas\\AGGV-Festas\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\vinic\\Desktop\\projects\\AGGV-Festas\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\gabri\\Desktop\\AGGV-Festas\\AGGV-Festas\\ConsoleApp1\\ConsoleApp1.csproj",
-        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gabri\\Desktop\\AGGV-Festas\\AGGV-Festas\\ConsoleApp1\\obj\\",
+        "projectPath": "C:\\Users\\vinic\\Desktop\\projects\\AGGV-Festas\\ConsoleApp1\\ConsoleApp1.csproj",
+        "packagesPath": "C:\\Users\\vinic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vinic\\Desktop\\projects\\AGGV-Festas\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vinic\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

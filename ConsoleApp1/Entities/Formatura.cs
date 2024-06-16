@@ -17,5 +17,4 @@ public class Formatura :Evento, IMesa, IDecoracao, IMusica
         PrecoDecoracao = IDecoracao.DefinirPrecoDecoracao(qtdConvidados, tipoEvento);
         PrecoMusica = IMusica.DefinirPrecoMusica(qtdConvidados, tipoEvento);
     }
-
 }

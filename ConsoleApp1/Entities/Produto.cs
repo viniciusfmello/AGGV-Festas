@@ -10,7 +10,5 @@ public class Produto
 {
     public string _nome;
     public TipoEvento _tipo;
-
-
 }
 

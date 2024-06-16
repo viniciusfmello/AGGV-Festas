@@ -1,4 +1,5 @@
-﻿using ConsoleApp1.Enums;
+﻿using ConsoleApp1.Entities;
+using ConsoleApp1.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

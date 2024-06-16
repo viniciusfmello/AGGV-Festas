@@ -42,8 +42,6 @@ public class Evento
         new Bebida {_nome = "Espumante Importado", _preco = 140.00, _tipo = TipoEvento.LuxoIPremier}
     };
 
-
-
     public Evento(DateTime data, int qtdConvidados, Espaco espaco, TipoEvento tipoEvento, CategoriaEvento categoriaEvento)
     {
         _dataEvento = data;
@@ -53,13 +51,6 @@ public class Evento
         _categoriaEvento = categoriaEvento;
     }
 
-    public void ListarProdutosPorEvento(List<Produto> produtos)
-    {
-        for (int i = 0; i < produtos.Count; i++)    
-        {
-            Console.WriteLine($"{i + 1} - {_produtos[i]._nome} ");
-        }
-    }
     public void ListarBebidasPorEvento(List<Bebida> bebidas)
     {
         for (int i = 0; i < bebidas.Count; i++)

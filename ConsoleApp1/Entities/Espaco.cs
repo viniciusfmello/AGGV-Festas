@@ -17,4 +17,10 @@ public class Espaco
         this.valorEspaco = valorEspaco;
         this.datas = new List<DateTime>();
     }
+    public override string ToString()
+    {
+        return $"Nome do espaço: {nomeEspaco}\nCapacidade máxima: {capacidadeMaxima}\nValor do espaço: {valorEspaco}\n";
+
+        
+    }
 }
