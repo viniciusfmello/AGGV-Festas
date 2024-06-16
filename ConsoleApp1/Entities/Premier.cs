@@ -8,9 +8,5 @@ using System.Threading.Tasks;
 public class Premier : ITipoEvento
 {
 
-    public Premier()
-    {
-
-    }
 
 }

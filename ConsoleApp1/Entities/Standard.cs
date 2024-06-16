@@ -8,12 +8,7 @@ using System.Threading.Tasks;
 
 public class Standard : ITipoEvento
 {
-    public List<Produto> _listaProdutos;
-
-    public Standard()
-    {
-        _listaProdutos = new List<Produto>();
-    }
+   
 
 }
 
