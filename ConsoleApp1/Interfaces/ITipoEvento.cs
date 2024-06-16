@@ -18,4 +18,5 @@ public interface ITipoEvento
         else
             return null;
     }
+
 }

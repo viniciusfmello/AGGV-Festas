@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class FestaAniversario : Evento, ICategoriaEvento, IMesa, IDecoracao, IBolo, IMusica
+public class FestaAniversario : Evento, IMesa, IDecoracao, IBolo, IMusica
 {
     public int PrecoMesa;
     public int PrecoDecoracao;

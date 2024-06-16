@@ -77,12 +77,26 @@ namespace ConsoleApp1
                         break;
                 }
             } while (tipoEvento == TipoEvento.Nulo);
-            {
-            }
-            Evento Casamento = new Casamento(ProcurarData, quantidadeConvidados, espacoCasamento, tipoEvento, CategoriaEvento.Casamento);
+            Casamento Casamento = new Casamento(ProcurarData, quantidadeConvidados, espacoCasamento, tipoEvento, CategoriaEvento.Casamento);
 
             Console.WriteLine("O tipo de evento escolhido fornece os seguintes produtos:");
-            Casamento.ListarProdutosPorTipo(tipoEvento);
+
+            Casamento.ColocarProdutosCasamentoPorTipo(tipoEvento);
+
+            Casamento.ListarProdutosPorEvento(Casamento._produtosCasamento);
+
+            Console.WriteLine("Agora vou precisar que você escolha as quantidades de bebidas que ofereceremos em seu casamento: ");
+
+            Casamento.ColocarBebidasCasamentoPorTipo(tipoEvento);
+
+            Casamento.EscolherQuantidadePrecoBebidas();
+
+            Casamento.ListarBebidasPorEvento(Casamento._bebidasCasamento);
+
+            Console.WriteLine("Você já selecionou o que precisamos para gerar um orçamento para você.");
+
+            Console.WriteLine($"Aqui está o valor total do seu casamento: {Casamento.CalcularPrecoTotalCasamento(tipoEvento)} ");
+            
 
 
 
