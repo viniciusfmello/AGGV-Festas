@@ -1,12 +1,7 @@
 ﻿using ConsoleApp1;
 using ConsoleApp1.Entities;
 using ConsoleApp1.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 public class Evento
 {
@@ -51,11 +46,61 @@ public class Evento
         _categoriaEvento = categoriaEvento;
     }
 
-    public void ListarBebidasPorEvento(List<Bebida> bebidas)
+    
+    public void EscolherQuantidadePrecoBebidas(List<Bebida> bebidasEvento)
     {
-        for (int i = 0; i < bebidas.Count; i++)
+        int quantidade = 0;
+        for (int i = 0; i < bebidasEvento.Count; i++)
         {
-            Console.WriteLine($"{i + 1} - {_bebidas[i]._nome}");
+            Console.Write($"Digite a quantidade de {bebidasEvento[i]._nome} que você quer em seu casamento: ");
+            quantidade = int.Parse(Console.ReadLine());
+            bebidasEvento[i]._quantidade = quantidade;
+        }
+        Console.WriteLine("Foram escolhidas as quantidades de bebidas do seu evento, a seguir te mostrarei as quantidades escolhidas com os valores totais: ");
+        for (int i = 0; i < bebidasEvento.Count; i++)
+        {
+            Console.WriteLine($"{bebidasEvento[i]._nome} - {bebidasEvento[i]._quantidade}: {bebidasEvento[i]._preco * bebidasEvento[i]._quantidade}.00 ");
+        }
+    }
+    public double CalcularPrecoProdutosEvento(TipoEvento tipoEvento)
+    {
+        double valorProdutos = 0;
+        if (tipoEvento == TipoEvento.Premier)
+        {
+            valorProdutos = _qtdConvidados * 60;
+        }
+        else if (tipoEvento == TipoEvento.Luxo)
+        {
+            valorProdutos = _qtdConvidados * 48;
+        }
+        else
+        {
+            valorProdutos = _qtdConvidados * 40;
+        }
+        return valorProdutos;
+    }
+    public double CalcularPrecoBebidasCasamento(List<Bebida> bebidasEvento)
+    {
+        double totalBebidas = 0;
+
+        foreach (var b in bebidasEvento)
+        {
+            totalBebidas += (b._preco * b._quantidade);
+        }
+        return totalBebidas;
+    }
+    public void ColocarBebidasEventoPorTipo(TipoEvento tipoBebida, List<Bebida> bebidas)
+    {
+        for (int i = 0; i < _bebidas.Count; i++)
+        {
+            if (_bebidas[i]._tipo == TipoEvento.Geral)
+            {
+                bebidas.Add(_bebidas[i]);
+            }
+            if ((tipoBebida == TipoEvento.Premier || tipoBebida == TipoEvento.Standard) && _bebidas[i]._tipo == TipoEvento.LuxoIPremier)
+            {
+                bebidas.Add(_bebidas[i]);
+            }
         }
     }
 }
