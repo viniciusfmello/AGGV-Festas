@@ -42,16 +42,11 @@ namespace ConsoleApp1
                         InformarDataEscolhidaPeloSistema(data, espacoEvento);
                         TipoEvento tipoEvento = EscolherTipoEvento(TipoEvento.Nulo);
                         EscolherTipoFesta(data, espacoEvento, tipoEvento, quantidadeConvidados);
-
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.WriteLine("\nVocê deseja contratar mais eventos?");
                             Console.ResetColor();
                             Console.WriteLine("1) Sim\n2) Não");
                             opcao = int.Parse(Console.ReadLine());
-                        if (opcao == 1)
-                        {
-                            break;
-                        }
                         if (opcao == 2)
                         {
                             Console.ForegroundColor = ConsoleColor.Blue;
@@ -66,6 +61,7 @@ namespace ConsoleApp1
                             Console.ResetColor();
                         }
                     }
+                    break;
                 }
                 catch (FormatException)
                 {
