@@ -10,7 +10,6 @@ using ConsoleApp1.Enums;
 public class Empresa
 {
     
-
     public List<Espaco> _listaEspacos = new List<Espaco>()
     {
         new Espaco("A", 100, 10000.00),

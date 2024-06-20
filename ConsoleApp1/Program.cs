@@ -15,17 +15,66 @@ namespace ConsoleApp1
         static string caminhoArquivo = Path.Combine(diretorioSaida, nomeArquivo);
         static void Main(string[] args)
         {
-            empresa._listaEventos = LerTodosEventosDoArquivo(caminhoArquivo);
+            bool foiPossivelDefinir = false;
+            int opcao = 0;
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Bem-vindo ao AGGV Festas\n");
             Console.ResetColor();
-            Console.WriteLine("\nDigite a quantidade de convidados desejada no seu evento:");
-            int quantidadeConvidados = int.Parse(Console.ReadLine());
-            Espaco espacoEvento = EscolherEspaco(quantidadeConvidados);
-            DateTime data = EscolherDataMaisProxima(espacoEvento);
-            InformarDataEscolhidaPeloSistema(data, espacoEvento);
-            TipoEvento tipoEvento = EscolherTipoEvento(TipoEvento.Nulo);
-            EscolherTipoFesta(data, espacoEvento, tipoEvento, quantidadeConvidados);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            #region Exibição do calendário de eventos
+            Console.WriteLine("Nosso calendário atual de eventos:");
+            Console.ResetColor();
+            ExibirCalendário();
+            #endregion
+            while (!foiPossivelDefinir) // esse laço garante que se cair na exceção o código continuará solicitando a digitação
+            {
+                try
+                {
+                    while (opcao != 2)
+                    {
+                        empresa._listaEventos = LerTodosEventosDoArquivo(caminhoArquivo);
+                        Console.WriteLine("\nDigite a quantidade de convidados desejada no seu evento:");
+                        int quantidadeConvidados = int.Parse(Console.ReadLine());
+                        Espaco espacoEvento = EscolherEspaco(quantidadeConvidados);
+                        DateTime data = EscolherDataMaisProxima(espacoEvento);
+                        InformarDataEscolhidaPeloSistema(data, espacoEvento);
+                        TipoEvento tipoEvento = EscolherTipoEvento(TipoEvento.Nulo);
+                        EscolherTipoFesta(data, espacoEvento, tipoEvento, quantidadeConvidados);
+
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\nVocê deseja contratar mais eventos?");
+                        Console.ResetColor();
+                        Console.WriteLine("1) Sim\n2) Não");
+                        opcao = int.Parse(Console.ReadLine());
+                        if (opcao == 2)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine("\nPrograma finalizado!");
+                            Console.ResetColor();
+                            break;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\nOpção inválida!!");
+                            Console.ResetColor();
+                        }
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nERRO! para definifir a quantidade de convidados, digite apenas números inteiros.\n");
+                    Console.ResetColor();
+                }
+            }
+        }
+        static void ExibirCalendário()
+        {
+            for (int i = 0; i < empresa._listaEventos.Count; i++)
+            {
+                Console.WriteLine($"Tipo do evento: {empresa._listaEventos[i]._tipoEvento} - Data do evento: {empresa._listaEventos[i]._dataEvento} - Nome do espaço: {empresa._listaEventos[i]._espacoEvento.nomeEspaco}");
+            }
         }
         static DateTime EscolherDataMaisProxima(Espaco espacoEvento)
         {
@@ -121,7 +170,7 @@ namespace ConsoleApp1
                             contratarFestaEmpresa(data, quantidadeConvidados, espacoEvento, tipoEvento);
                             break;
                         case 4:
-                            if (tipoEvento == TipoEvento.Standard)                            
+                            if (tipoEvento == TipoEvento.Standard)
                                 contratarFestaAniversario(data, quantidadeConvidados, espacoEvento);
 
                             else
@@ -242,8 +291,8 @@ namespace ConsoleApp1
             Console.WriteLine("Segue abaixo o resumo dos itens do casamento:\n");
             #endregion
             casamento.MostrarResumoCasamento(tipoEvento);
-            empresa.AdicionarEventoNoArquivo(casamento, caminhoArquivo);
-            
+            empresa.AdicionarEventoNoArquivo(casamento, caminhoArquivo); //adiciona o casamento no arquvio
+
         }
         static void contratarFormatura(DateTime data, int quantidadeConvidados, Espaco espacoEvento, TipoEvento tipoEvento)
         {
@@ -261,7 +310,7 @@ namespace ConsoleApp1
             Console.WriteLine("Segue abaixo o resumo dos itens da formatura:\n");
             #endregion
             formatura.MostrarResumoFormatura(tipoEvento);
-            empresa.AdicionarEventoNoArquivo(formatura, caminhoArquivo);
+            empresa.AdicionarEventoNoArquivo(formatura, caminhoArquivo); //adiciona a formatura no arquivo
         }
         static void contratarFestaEmpresa(DateTime data, int quantidadeConvidados, Espaco espacoEvento, TipoEvento tipoEvento)
         {
@@ -278,7 +327,7 @@ namespace ConsoleApp1
             Console.ResetColor();
             #endregion
             festaEmpresa.MostrarResumoFestaEmpresa(tipoEvento);
-            empresa.AdicionarEventoNoArquivo(festaEmpresa, caminhoArquivo);
+            empresa.AdicionarEventoNoArquivo(festaEmpresa, caminhoArquivo); //adiciona a festa no arquvio
         }
         static void contratarFestaAniversario(DateTime data, int quantidadeConvidados, Espaco espacoEvento)
         {
@@ -294,7 +343,7 @@ namespace ConsoleApp1
             Console.ResetColor();
             #endregion
             festaAniversario.MostrarResumoAniversario(TipoEvento.Standard);
-            empresa.AdicionarEventoNoArquivo(festaAniversario, caminhoArquivo);
+            empresa.AdicionarEventoNoArquivo(festaAniversario, caminhoArquivo); //adiciona a festa no arquvio
         }
         static void contratarEventoLivre(DateTime data, int quantidadeConvidados, Espaco espacoEvento, TipoEvento tipoEvento)
         {
@@ -308,15 +357,13 @@ namespace ConsoleApp1
             Console.WriteLine($"A festa de aniversário será na data: {data.ToShortDateString()}");  //exibe a data no formato apenas de data
             Console.ResetColor();
             #endregion
-            festaLivre.MostrarResumoFestaLivre(tipoEvento);
-            empresa.AdicionarEventoNoArquivo(festaLivre, caminhoArquivo);
+            festaLivre.MostrarResumoFestaLivre();
+            empresa.AdicionarEventoNoArquivo(festaLivre, caminhoArquivo);//adicionao o evento no arquvio
 
         }
-
         public static List<Evento> LerTodosEventosDoArquivo(string caminhoArquivo)
         {
             List<Evento> eventos = new List<Evento>();
-
             try
             {
                 using (StreamReader sr = new StreamReader(caminhoArquivo))
@@ -329,7 +376,7 @@ namespace ConsoleApp1
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) //exceção de erro no arquivo
             {
                 Console.WriteLine($"Erro ao ler arquivo: {ex.Message}");
             }
@@ -351,7 +398,6 @@ namespace ConsoleApp1
             Evento evento = new Evento(data, qtdConvidados, espaco, tipoEvento, categoriaEvento);
 
             return evento;
-
         }
 
     }

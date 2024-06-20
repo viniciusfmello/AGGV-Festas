@@ -25,21 +25,9 @@ namespace ConsoleApp1.Entities
             return valorTotalFesta;
         }
 
-        public void MostrarResumoFestaLivre(TipoEvento tipoEvento)
+        public void MostrarResumoFestaLivre()
         {
             Console.WriteLine($"Valor do espaço:{_espacoEvento.valorEspaco}.00");
-            Console.WriteLine($"Valor das comidas:{CalcularPrecoProdutosEvento(tipoEvento)}");
-            Console.WriteLine("\nLista das comidas:");
-            foreach (Produto a in _listaProdutosFestaLivre)
-            {
-                Console.WriteLine($"- {a._nome}");
-            }
-            Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasEvento(_listaBebidasFestaLivre)}");
-            Console.WriteLine("\nLista das bebidas");
-            foreach (Bebida a in _listaBebidasFestaLivre)
-            {
-                Console.WriteLine($"- Bebida: {a._nome} - Quantidade: {a._quantidade}");
-            }
         }
     }
 }
