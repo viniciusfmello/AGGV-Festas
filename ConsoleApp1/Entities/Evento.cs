@@ -8,7 +8,7 @@ public class Evento
     public int _qtdConvidados;
     public Espaco _espacoEvento;
     public DateTime _dataEvento;
-    public ITipoEvento _tipoEvento;
+    public TipoEvento _tipoEvento;
     public CategoriaEvento _categoriaEvento;
     public List<Produto> _produtos = new List<Produto>()
     {
@@ -42,26 +42,12 @@ public class Evento
         _dataEvento = data;
         _qtdConvidados = qtdConvidados;
         _espacoEvento = espaco;
-        _tipoEvento = ITipoEvento.DefinirTipoEvento(tipoEvento);
+        _tipoEvento = tipoEvento;
         _categoriaEvento = categoriaEvento;
     }
 
     
-    public void EscolherQuantidadePrecoBebidas(List<Bebida> bebidasEvento)
-    {
-        int quantidade = 0;
-        for (int i = 0; i < bebidasEvento.Count; i++)
-        {
-            Console.Write($"Digite a quantidade de {bebidasEvento[i]._nome} que você quer em seu casamento: ");
-            quantidade = int.Parse(Console.ReadLine());
-            bebidasEvento[i]._quantidade = quantidade;
-        }
-        Console.WriteLine("Foram escolhidas as quantidades de bebidas do seu evento, a seguir te mostrarei as quantidades escolhidas com os valores totais: ");
-        for (int i = 0; i < bebidasEvento.Count; i++)
-        {
-            Console.WriteLine($"{bebidasEvento[i]._nome} - {bebidasEvento[i]._quantidade}: {bebidasEvento[i]._preco * bebidasEvento[i]._quantidade}.00 ");
-        }
-    }
+ 
     public double CalcularPrecoProdutosEvento(TipoEvento tipoEvento)
     {
         double valorProdutos = 0;

@@ -30,5 +30,24 @@ public class FestaAniversario : Evento, IMesa, IDecoracao, IBolo, IMusica
     {
         return _espacoEvento.valorEspaco + _precoMesa + _precoDecoracao + _precoBolo + _precoMusica + CalcularPrecoProdutosEvento(TipoEvento.Standard) + CalcularPrecoBebidasCasamento(_bebidasFestaAniversario);
     }
+    public void MostrarResumoAniversario(TipoEvento tipoEvento)
+    {
+        Console.WriteLine($"Valor do espaço:{_espacoEvento.valorEspaco}.00");
+        Console.WriteLine($"Valor dos itens de mesa:{_precoMesa}");
+        Console.WriteLine($"Valor da decoração:{_precoDecoracao}");
+        Console.WriteLine($"Valor da música:{_precoMusica}");
+        Console.WriteLine($"Valor das comidas:{CalcularPrecoProdutosEvento(tipoEvento)}");
+        Console.WriteLine("\nLista das comidas:");
+        foreach (Produto a in _produtosFestaAniversario)
+        {
+            Console.WriteLine($"- {a._nome}");
+        }
+        Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasCasamento(_bebidasFestaAniversario)}");
+        Console.WriteLine("\nLista das bebidas");
+        foreach (Bebida a in _bebidasFestaAniversario)
+        {
+            Console.WriteLine($"- Bebida: {a._nome} - Quantidade: {a._quantidade}");
+        }
+    }
 }
 

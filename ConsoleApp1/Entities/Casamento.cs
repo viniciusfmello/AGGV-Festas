@@ -40,6 +40,26 @@ public class Casamento : Evento, IMesa, IBolo, IDecoracao, IMusica
     {
         return _espacoEvento.valorEspaco + PrecoMesa + PrecoDecoracao + PrecoBolo + PrecoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasCasamento(_bebidasCasamento);
     }
+    public void MostrarResumoCasamento(TipoEvento tipoEvento)
+    {
+        Console.WriteLine($"Valor do espaço:{_espacoEvento.valorEspaco}.00");
+        Console.WriteLine($"Valor dos itens de mesa:{PrecoMesa}");
+        Console.WriteLine($"Valor da decoração:{PrecoDecoracao}");
+        Console.WriteLine($"Valor do bolo:{PrecoBolo}");
+        Console.WriteLine($"Valor da música:{PrecoMusica}");
+        Console.WriteLine($"Valor das comidas:{CalcularPrecoProdutosEvento(tipoEvento)}");
+        Console.WriteLine("\nLista das comidas:");
+        foreach(Produto a in _produtosCasamento)
+        {
+            Console.WriteLine($"- {a._nome}");
+        }
+        Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasCasamento(_bebidasCasamento)}");
+        Console.WriteLine("\nLista das bebidas");
+        foreach (Bebida a in _bebidasCasamento)
+        {
+            Console.WriteLine($"- Bebida: {a._nome} - Quantidade: {a._quantidade}");
+        }
+    }
 
 }
 

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Formatura :Evento, IMesa, IDecoracao, IMusica
+public class Formatura : Evento, IMesa, IDecoracao, IMusica
 {
     public int _precoMesa;
     public int _precoDecoracao;
@@ -36,6 +36,25 @@ public class Formatura :Evento, IMesa, IDecoracao, IMusica
     public double CalcularPrecoTotalFormatura(TipoEvento tipoEvento)
     {
         return _espacoEvento.valorEspaco + _precoMesa + _precoDecoracao + _precoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasCasamento(_bebidasFormatura);
+    }
+    public void MostrarResumoFormatura(TipoEvento tipoEvento)
+    {
+        Console.WriteLine($"Valor do espaço:{_espacoEvento.valorEspaco}.00");
+        Console.WriteLine($"Valor dos itens de mesa:{_precoMesa}");
+        Console.WriteLine($"Valor da decoração:{_precoDecoracao}");
+        Console.WriteLine($"Valor da música:{_precoMusica}");
+        Console.WriteLine($"Valor das comidas:{CalcularPrecoProdutosEvento(tipoEvento)}");
+        Console.WriteLine("\nLista das comidas:");
+        foreach (Produto a in _produtosFormatura)
+        {
+            Console.WriteLine($"- {a._nome}");
+        }
+        Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasCasamento(_bebidasFormatura)}");
+        Console.WriteLine("\nLista das bebidas");
+        foreach (Bebida a in _bebidasFormatura)
+        {
+            Console.WriteLine($"- Bebida: {a._nome} - Quantidade: {a._quantidade}");
+        }
     }
 
 }

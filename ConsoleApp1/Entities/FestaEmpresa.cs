@@ -23,5 +23,21 @@ public class FestaEmpresa : Evento, IMusica
     {
         return _espacoEvento.valorEspaco + _precoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasCasamento(_bebidasFestaEmpresa);
     }
-    
+    public void MostrarResumoFestaEmpresa(TipoEvento tipoEvento)
+    {
+        Console.WriteLine($"Valor do espaço:{_espacoEvento.valorEspaco}.00");
+        Console.WriteLine($"Valor da música:{_precoMusica}");
+        Console.WriteLine($"Valor das comidas:{CalcularPrecoProdutosEvento(tipoEvento)}");
+        Console.WriteLine("\nLista das comidas:");
+        foreach (Produto a in _produtosFestaEmpresa)
+        {
+            Console.WriteLine($"- {a._nome}");
+        }
+        Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasCasamento(_bebidasFestaEmpresa)}");
+        Console.WriteLine("\nLista das bebidas");
+        foreach (Bebida a in _bebidasFestaEmpresa)
+        {
+            Console.WriteLine($"- Bebida: {a._nome} - Quantidade: {a._quantidade}");
+        }
+    }
 }

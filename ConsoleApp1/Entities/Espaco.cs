@@ -19,7 +19,7 @@ public class Espaco
     }
     public override string ToString()
     {
-        return $"Nome do espaço: {nomeEspaco}\nCapacidade máxima: {capacidadeMaxima}\nValor do espaço: {valorEspaco}\n";
+        return $"\nNome: {nomeEspaco}\nCapacidade máxima: {capacidadeMaxima}\nValor do espaço: {valorEspaco}.00\n";
 
         
     }
