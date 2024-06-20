@@ -11,7 +11,7 @@ namespace ConsoleApp1.Entities
     {
         public string _nome;
         public double _preco;
-        public TipoEvento _tipo;
+        public TipoEvento? _tipo;
         public int _quantidade;
     }
 }

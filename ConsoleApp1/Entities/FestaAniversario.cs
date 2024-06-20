@@ -28,8 +28,9 @@ public class FestaAniversario : Evento, IMesa, IDecoracao, IBolo, IMusica
     }
     public double CalcularPrecoTotalFestaAniversario()
     {
-        return _espacoEvento.valorEspaco + _precoMesa + _precoDecoracao + _precoBolo + _precoMusica + CalcularPrecoProdutosEvento(TipoEvento.Standard) + CalcularPrecoBebidasEvento(_bebidasFestaAniversario);
-    }
+        valorTotalFesta = _espacoEvento.valorEspaco + _precoMesa + _precoDecoracao + _precoBolo + _precoMusica + CalcularPrecoProdutosEvento(TipoEvento.Standard) + CalcularPrecoBebidasEvento(_bebidasFestaAniversario);
+        return valorTotalFesta;
+    } 
     public void MostrarResumoAniversario(TipoEvento tipoEvento)
     {
         Console.WriteLine($"Valor do espaço:{_espacoEvento.valorEspaco}.00");

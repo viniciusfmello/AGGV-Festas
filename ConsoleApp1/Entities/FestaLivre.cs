@@ -21,8 +21,10 @@ namespace ConsoleApp1.Entities
 
         public double CalcularPrecoTotalFestaLivre(TipoEvento tipoEvento)
         {
-            return _espacoEvento.valorEspaco + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_listaBebidasFestaLivre);
+            valorTotalFesta = _espacoEvento.valorEspaco + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_listaBebidasFestaLivre);
+            return valorTotalFesta;
         }
+
         public void MostrarResumoFestaLivre(TipoEvento tipoEvento)
         {
             Console.WriteLine($"Valor do espaço:{_espacoEvento.valorEspaco}.00");

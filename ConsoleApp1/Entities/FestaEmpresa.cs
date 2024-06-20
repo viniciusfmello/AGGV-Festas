@@ -21,7 +21,8 @@ public class FestaEmpresa : Evento, IMusica
     }
     public double CalcularPrecoTotalFestaEmpresa(TipoEvento tipoEvento)
     {
-        return _espacoEvento.valorEspaco + _precoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_bebidasFestaEmpresa);
+        valorTotalFesta = _espacoEvento.valorEspaco + _precoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_bebidasFestaEmpresa);
+        return valorTotalFesta;
     }
     public void MostrarResumoFestaEmpresa(TipoEvento tipoEvento)
     {

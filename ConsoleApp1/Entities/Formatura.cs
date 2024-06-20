@@ -35,7 +35,8 @@ public class Formatura : Evento, IMesa, IDecoracao, IMusica
     }
     public double CalcularPrecoTotalFormatura(TipoEvento tipoEvento)
     {
-        return _espacoEvento.valorEspaco + _precoMesa + _precoDecoracao + _precoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_bebidasFormatura);
+        valorTotalFesta = _espacoEvento.valorEspaco + _precoMesa + _precoDecoracao + _precoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_bebidasFormatura);
+        return valorTotalFesta;
     }
     public void MostrarResumoFormatura(TipoEvento tipoEvento)
     {

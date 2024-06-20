@@ -10,6 +10,7 @@ public class Evento
     public DateTime _dataEvento;
     public TipoEvento _tipoEvento;
     public CategoriaEvento _categoriaEvento;
+    public double valorTotalFesta;
     public List<Produto> _produtos = new List<Produto>()
     {
         new Produto { _nome = "Croquete carne seca", _tipo = TipoEvento.Luxo },
@@ -28,13 +29,13 @@ public class Evento
     };
     public List<Bebida> _bebidas = new List<Bebida>()
     {
-        new Bebida {_nome = "Água com gás 1,5L", _preco = 5.00, _tipo = TipoEvento.Geral },
-        new Bebida {_nome = "Suco Natural 1L", _preco = 7.00, _tipo = TipoEvento.Geral},
-        new Bebida {_nome = "Refrigerante 2L", _preco = 8.00, _tipo = TipoEvento.Geral },
-        new Bebida {_nome = "Cerveja Comum 600ml", _preco = 20.00, _tipo = TipoEvento.Geral},
-        new Bebida {_nome = "Cerveja Artesanal 600ml", _preco = 30.00, _tipo= TipoEvento.LuxoIPremier},
-        new Bebida {_nome = "Espumante Nacional", _preco = 80.00, _tipo = TipoEvento.Geral},
-        new Bebida {_nome = "Espumante Importado", _preco = 140.00, _tipo = TipoEvento.LuxoIPremier}
+        new Bebida {_nome = "Água com gás", _preco = 5.00, _tipo = TipoEvento.Geral},
+        new Bebida {_nome = "Suco Natural", _preco = 7.00, _tipo = TipoEvento.Geral},
+        new Bebida {_nome = "Refrigerante", _preco = 8.00, _tipo = TipoEvento.Geral},
+        new Bebida {_nome = "Cerveja", _preco = 20.00, _tipo = TipoEvento.Geral},
+        new Bebida {_nome = "Cerveja Artesanal", _preco = 30.00, _tipo= TipoEvento.LuxoIPremier},
+        new Bebida {_nome = "Espumante Nac.", _preco = 80.00, _tipo = TipoEvento.Geral},
+        new Bebida {_nome = "Espumante Imp.", _preco = 140.00, _tipo = TipoEvento.LuxoIPremier}
     };
 
     public Evento(DateTime data, int qtdConvidados, Espaco espaco, TipoEvento tipoEvento, CategoriaEvento categoriaEvento)
@@ -44,6 +45,7 @@ public class Evento
         _espacoEvento = espaco;
         _tipoEvento = tipoEvento;
         _categoriaEvento = categoriaEvento;
+        valorTotalFesta = 0;
     }
 
     

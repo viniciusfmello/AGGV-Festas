@@ -38,7 +38,8 @@ public class Casamento : Evento, IMesa, IBolo, IDecoracao, IMusica
    
     public double CalcularPrecoTotalCasamento(TipoEvento tipoEvento)
     {
-        return _espacoEvento.valorEspaco + PrecoMesa + PrecoDecoracao + PrecoBolo + PrecoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_bebidasCasamento);
+        valorTotalFesta = _espacoEvento.valorEspaco + PrecoMesa + PrecoDecoracao + PrecoBolo + PrecoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_bebidasCasamento);
+        return valorTotalFesta;
     }
     public void MostrarResumoCasamento(TipoEvento tipoEvento)
     {

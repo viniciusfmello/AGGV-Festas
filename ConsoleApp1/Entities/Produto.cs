@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 public class Produto
 {
     public string _nome;
-    public TipoEvento _tipo;
+    public TipoEvento? _tipo;
+
 }
 

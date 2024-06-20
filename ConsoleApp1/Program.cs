@@ -10,10 +10,12 @@ namespace ConsoleApp1
     public class Program
     {
         static Empresa empresa = new Empresa();
-
+        static string diretorioSaida = AppDomain.CurrentDomain.BaseDirectory;
+        static string nomeArquivo = "eventos.txt";
+        static string caminhoArquivo = Path.Combine(diretorioSaida, nomeArquivo);
         static void Main(string[] args)
         {
-            
+            empresa._listaEventos = LerTodosEventosDoArquivo(caminhoArquivo);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Bem-vindo ao AGGV Festas\n");
             Console.ResetColor();
@@ -240,6 +242,7 @@ namespace ConsoleApp1
             Console.WriteLine("Segue abaixo o resumo dos itens do casamento:\n");
             #endregion
             casamento.MostrarResumoCasamento(tipoEvento);
+            empresa.AdicionarEventoNoArquivo(casamento, caminhoArquivo);
             
         }
         static void contratarFormatura(DateTime data, int quantidadeConvidados, Espaco espacoEvento, TipoEvento tipoEvento)
@@ -258,6 +261,7 @@ namespace ConsoleApp1
             Console.WriteLine("Segue abaixo o resumo dos itens da formatura:\n");
             #endregion
             formatura.MostrarResumoFormatura(tipoEvento);
+            empresa.AdicionarEventoNoArquivo(formatura, caminhoArquivo);
         }
         static void contratarFestaEmpresa(DateTime data, int quantidadeConvidados, Espaco espacoEvento, TipoEvento tipoEvento)
         {
@@ -274,6 +278,7 @@ namespace ConsoleApp1
             Console.ResetColor();
             #endregion
             festaEmpresa.MostrarResumoFestaEmpresa(tipoEvento);
+            empresa.AdicionarEventoNoArquivo(festaEmpresa, caminhoArquivo);
         }
         static void contratarFestaAniversario(DateTime data, int quantidadeConvidados, Espaco espacoEvento)
         {
@@ -289,6 +294,7 @@ namespace ConsoleApp1
             Console.ResetColor();
             #endregion
             festaAniversario.MostrarResumoAniversario(TipoEvento.Standard);
+            empresa.AdicionarEventoNoArquivo(festaAniversario, caminhoArquivo);
         }
         static void contratarEventoLivre(DateTime data, int quantidadeConvidados, Espaco espacoEvento, TipoEvento tipoEvento)
         {
@@ -303,6 +309,48 @@ namespace ConsoleApp1
             Console.ResetColor();
             #endregion
             festaLivre.MostrarResumoFestaLivre(tipoEvento);
+            empresa.AdicionarEventoNoArquivo(festaLivre, caminhoArquivo);
+
+        }
+
+        public static List<Evento> LerTodosEventosDoArquivo(string caminhoArquivo)
+        {
+            List<Evento> eventos = new List<Evento>();
+
+            try
+            {
+                using (StreamReader sr = new StreamReader(caminhoArquivo))
+                {
+                    string linha;
+                    while ((linha = sr.ReadLine()) != null)
+                    {
+                        Evento evento = LerEventoArquivo(linha);
+                        eventos.Add(evento);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao ler arquivo: {ex.Message}");
+            }
+
+            return eventos;
+        }
+        public static Evento LerEventoArquivo(string linha)
+        {
+            string[] partesArquivo = linha.Split('|');
+            int qtdConvidados = int.Parse(partesArquivo[0]);
+            string espacoNome = partesArquivo[1];
+            int qtdMaxEspaco = int.Parse(partesArquivo[2]);
+            double valorEspaco = double.Parse(partesArquivo[3]);
+            DateTime data = DateTime.Parse(partesArquivo[4]);
+            CategoriaEvento categoriaEvento = (CategoriaEvento)Enum.Parse(typeof(CategoriaEvento), partesArquivo[5]);
+            double valorTotalFesta = double.Parse(partesArquivo[6]);
+            TipoEvento tipoEvento = (TipoEvento)Enum.Parse(typeof(TipoEvento), partesArquivo[7]);
+            Espaco espaco = new Espaco(espacoNome, qtdMaxEspaco, valorEspaco);
+            Evento evento = new Evento(data, qtdConvidados, espaco, tipoEvento, categoriaEvento);
+
+            return evento;
 
         }
 
