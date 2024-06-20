@@ -15,13 +15,14 @@ namespace ConsoleApp1
         static string caminhoArquivo = Path.Combine(diretorioSaida, nomeArquivo);
         static void Main(string[] args)
         {
+            empresa._listaEventos = LerTodosEventosDoArquivo(caminhoArquivo);
             bool foiPossivelDefinir = false;
             int opcao = 0;
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Bem-vindo ao AGGV Festas\n");
             Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Yellow;
             #region Exibição do calendário de eventos
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Nosso calendário atual de eventos:");
             Console.ResetColor();
             ExibirCalendário();
@@ -73,7 +74,7 @@ namespace ConsoleApp1
         {
             for (int i = 0; i < empresa._listaEventos.Count; i++)
             {
-                Console.WriteLine($"Tipo do evento: {empresa._listaEventos[i]._tipoEvento} - Data do evento: {empresa._listaEventos[i]._dataEvento} - Nome do espaço: {empresa._listaEventos[i]._espacoEvento.nomeEspaco}");
+                Console.WriteLine($"Tipo do evento: {empresa._listaEventos[i]._tipoEvento} - Data do evento: {empresa._listaEventos[i]._dataEvento.ToShortDateString()} - Nome do espaço: {empresa._listaEventos[i]._espacoEvento.nomeEspaco} - Valor Festa: {empresa._listaEventos[i].valorTotalFesta} - Quantidade Convidados: {empresa._listaEventos[i]._qtdConvidados} - Categoria Evento: {empresa._listaEventos[i]._categoriaEvento}");
             }
         }
         static DateTime EscolherDataMaisProxima(Espaco espacoEvento)
@@ -396,6 +397,7 @@ namespace ConsoleApp1
             TipoEvento tipoEvento = (TipoEvento)Enum.Parse(typeof(TipoEvento), partesArquivo[7]);
             Espaco espaco = new Espaco(espacoNome, qtdMaxEspaco, valorEspaco);
             Evento evento = new Evento(data, qtdConvidados, espaco, tipoEvento, categoriaEvento);
+            evento.valorTotalFesta = valorTotalFesta;
 
             return evento;
         }

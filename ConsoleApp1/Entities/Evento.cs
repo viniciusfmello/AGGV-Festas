@@ -37,15 +37,17 @@ public class Evento
         new Bebida {_nome = "Espumante Nac.", _preco = 80.00, _tipo = TipoEvento.Geral},
         new Bebida {_nome = "Espumante Imp.", _preco = 140.00, _tipo = TipoEvento.LuxoIPremier}
     };
-
+     
     public Evento(DateTime data, int qtdConvidados, Espaco espaco, TipoEvento tipoEvento, CategoriaEvento categoriaEvento)
     {
+        
         _dataEvento = data;
         _qtdConvidados = qtdConvidados;
         _espacoEvento = espaco;
         _tipoEvento = tipoEvento;
         _categoriaEvento = categoriaEvento;
         valorTotalFesta = 0;
+       
     }
 
     
