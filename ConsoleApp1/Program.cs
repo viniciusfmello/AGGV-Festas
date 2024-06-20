@@ -18,21 +18,22 @@ namespace ConsoleApp1
             empresa._listaEventos = LerTodosEventosDoArquivo(caminhoArquivo);
             bool foiPossivelDefinir = false;
             int opcao = 0;
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Bem-vindo ao AGGV Festas\n");
-            Console.ResetColor();
-            #region Exibição do calendário de eventos
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Nosso calendário atual de eventos:");
-            Console.ResetColor();
-            ExibirCalendário();
-            #endregion
+
             while (!foiPossivelDefinir) // esse laço garante que se cair na exceção o código continuará solicitando a digitação
             {
                 try
                 {
                     while (opcao != 2)
                     {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("Bem-vindo ao AGGV Festas\n");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        #region Exibição do calendário de eventos
+                        Console.WriteLine("Nosso calendário atual de eventos:");
+                        Console.ResetColor();
+                        ExibirCalendário();
+                        #endregion
                         empresa._listaEventos = LerTodosEventosDoArquivo(caminhoArquivo);
                         Console.WriteLine("\nDigite a quantidade de convidados desejada no seu evento:");
                         int quantidadeConvidados = int.Parse(Console.ReadLine());
@@ -42,11 +43,15 @@ namespace ConsoleApp1
                         TipoEvento tipoEvento = EscolherTipoEvento(TipoEvento.Nulo);
                         EscolherTipoFesta(data, espacoEvento, tipoEvento, quantidadeConvidados);
 
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("\nVocê deseja contratar mais eventos?");
-                        Console.ResetColor();
-                        Console.WriteLine("1) Sim\n2) Não");
-                        opcao = int.Parse(Console.ReadLine());
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("\nVocê deseja contratar mais eventos?");
+                            Console.ResetColor();
+                            Console.WriteLine("1) Sim\n2) Não");
+                            opcao = int.Parse(Console.ReadLine());
+                        if (opcao == 1)
+                        {
+                            break;
+                        }
                         if (opcao == 2)
                         {
                             Console.ForegroundColor = ConsoleColor.Blue;

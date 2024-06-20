@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Entities
 {
-    public class Bebida
+    public class Bebida 
     {
         public string _nome;
         public double _preco;
