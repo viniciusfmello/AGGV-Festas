@@ -35,7 +35,7 @@ public class Formatura : Evento, IMesa, IDecoracao, IMusica
     }
     public double CalcularPrecoTotalFormatura(TipoEvento tipoEvento)
     {
-        return _espacoEvento.valorEspaco + _precoMesa + _precoDecoracao + _precoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasCasamento(_bebidasFormatura);
+        return _espacoEvento.valorEspaco + _precoMesa + _precoDecoracao + _precoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_bebidasFormatura);
     }
     public void MostrarResumoFormatura(TipoEvento tipoEvento)
     {
@@ -49,7 +49,7 @@ public class Formatura : Evento, IMesa, IDecoracao, IMusica
         {
             Console.WriteLine($"- {a._nome}");
         }
-        Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasCasamento(_bebidasFormatura)}");
+        Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasEvento(_bebidasFormatura)}");
         Console.WriteLine("\nLista das bebidas");
         foreach (Bebida a in _bebidasFormatura)
         {

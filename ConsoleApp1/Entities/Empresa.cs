@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
+using System.IO;
 public class Empresa
 {
     public List<Espaco> _listaEspacos = new List<Espaco>()
@@ -20,7 +20,10 @@ public class Empresa
     };
     public List<Evento> _listaEventos;
 
-
+    public Empresa()
+    {
+        _listaEventos = new List<Evento>();
+    }
     public Espaco EscolherMelhorEspaco(int quantidadeConvidados)
     {
         _listaEspacos.OrderBy(p => p.capacidadeMaxima); //ordena a lista de espaços por capacidade afim de escolher o melhor espaço
@@ -75,5 +78,5 @@ public class Empresa
         }
         return false;
     }
-
+    
 }

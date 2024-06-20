@@ -65,7 +65,7 @@ public class Evento
         }
         return valorProdutos;
     }
-    public double CalcularPrecoBebidasCasamento(List<Bebida> bebidasEvento)
+    public double CalcularPrecoBebidasEvento(List<Bebida> bebidasEvento)
     {
         double totalBebidas = 0;
 

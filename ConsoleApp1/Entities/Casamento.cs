@@ -38,7 +38,7 @@ public class Casamento : Evento, IMesa, IBolo, IDecoracao, IMusica
    
     public double CalcularPrecoTotalCasamento(TipoEvento tipoEvento)
     {
-        return _espacoEvento.valorEspaco + PrecoMesa + PrecoDecoracao + PrecoBolo + PrecoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasCasamento(_bebidasCasamento);
+        return _espacoEvento.valorEspaco + PrecoMesa + PrecoDecoracao + PrecoBolo + PrecoMusica + CalcularPrecoProdutosEvento(tipoEvento) + CalcularPrecoBebidasEvento(_bebidasCasamento);
     }
     public void MostrarResumoCasamento(TipoEvento tipoEvento)
     {
@@ -53,7 +53,7 @@ public class Casamento : Evento, IMesa, IBolo, IDecoracao, IMusica
         {
             Console.WriteLine($"- {a._nome}");
         }
-        Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasCasamento(_bebidasCasamento)}");
+        Console.WriteLine($"\nValor das bebidas:{CalcularPrecoBebidasEvento(_bebidasCasamento)}");
         Console.WriteLine("\nLista das bebidas");
         foreach (Bebida a in _bebidasCasamento)
         {

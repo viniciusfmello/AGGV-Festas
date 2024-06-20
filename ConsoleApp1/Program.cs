@@ -2,27 +2,28 @@
 using ConsoleApp1.Enums;
 using System;
 using System.Linq;
+using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ConsoleApp1
 {
-    internal class Program
+    public class Program
     {
         static Empresa empresa = new Empresa();
 
         static void Main(string[] args)
         {
-            Espaco espacoEvento = null;
-            TipoEvento tipoEvento = TipoEvento.Nulo;
-
+            
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Bem-vindo ao AGGV Festas\n");
             Console.ResetColor();
-            espacoEvento = EscolherEspaco();
+            Console.WriteLine("\nDigite a quantidade de convidados desejada no seu evento:");
+            int quantidadeConvidados = int.Parse(Console.ReadLine());
+            Espaco espacoEvento = EscolherEspaco(quantidadeConvidados);
             DateTime data = EscolherDataMaisProxima(espacoEvento);
             InformarDataEscolhidaPeloSistema(data, espacoEvento);
-            tipoEvento = EscolherTipoEvento(tipoEvento);
-            EscolherTipoFesta(data, espacoEvento, tipoEvento);
+            TipoEvento tipoEvento = EscolherTipoEvento(TipoEvento.Nulo);
+            EscolherTipoFesta(data, espacoEvento, tipoEvento, quantidadeConvidados);
         }
         static DateTime EscolherDataMaisProxima(Espaco espacoEvento)
         {
@@ -96,9 +97,8 @@ namespace ConsoleApp1
             return tipoEvento;
         }
 
-        static void EscolherTipoFesta(DateTime data, Espaco espacoEvento, TipoEvento tipoEvento)
+        static void EscolherTipoFesta(DateTime data, Espaco espacoEvento, TipoEvento tipoEvento, int quantidadeConvidados)
         {
-            int quantidadeConvidados = 0;
             bool foiPossivelDefinir = false;
             while (!foiPossivelDefinir) // esse laço garante que se cair na exceção o código continuará solicitando a digitação
             {
@@ -146,7 +146,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        static Espaco EscolherEspaco()
+        static Espaco EscolherEspaco(int quantidadeConvidados)
         {
             Espaco espacoEvento;
             Empresa empresa = new Empresa();
@@ -166,8 +166,6 @@ namespace ConsoleApp1
 
                     do //laço while para verificar se a quantidade de convidados é inválida (menor menor que 1 ou maior que 500)
                     {
-                        Console.WriteLine("\nDigite a quantidade de convidados desejada no casamento:");
-                        int quantidadeConvidados = int.Parse(Console.ReadLine());
 
                         if (quantidadeConvidados <= 0 || quantidadeConvidados > 500)
                         {
@@ -200,7 +198,7 @@ namespace ConsoleApp1
                 {
                     for (int i = 0; i < bebidasEvento.Count; i++) //laço para solicitar todas as bebidas do usuário
                     {
-                        Console.Write($"\nDigite a quantidade de {bebidasEvento[i]._nome} que você quer em seu casamento: ");
+                        Console.Write($"\nDigite a quantidade de {bebidasEvento[i]._nome} que você quer em seu evento: ");
                         quantidade = int.Parse(Console.ReadLine());
                         bebidasEvento[i]._quantidade = quantidade;
                     }
@@ -242,12 +240,12 @@ namespace ConsoleApp1
             Console.WriteLine("Segue abaixo o resumo dos itens do casamento:\n");
             #endregion
             casamento.MostrarResumoCasamento(tipoEvento);
+            
         }
         static void contratarFormatura(DateTime data, int quantidadeConvidados, Espaco espacoEvento, TipoEvento tipoEvento)
         {
             Formatura formatura = new Formatura(data, quantidadeConvidados, espacoEvento, tipoEvento, CategoriaEvento.Formatura);
             Console.WriteLine("\nAgora vou precisar que você escolha as quantidades de bebidas que ofereceremos em seu evento de formatura: ");
-
             formatura.ColocarBebidasEventoPorTipo(tipoEvento, formatura._bebidasFormatura); //método para exibir as bebidas de acordo com o tipo de evento, uma vez que alguns eventos tem bebidas exclusivas
 
             EscolherQuantidadePrecoBebidas(formatura._bebidasFormatura); //definir os valores
@@ -294,6 +292,17 @@ namespace ConsoleApp1
         }
         static void contratarEventoLivre(DateTime data, int quantidadeConvidados, Espaco espacoEvento, TipoEvento tipoEvento)
         {
+            FestaLivre festaLivre = new FestaLivre(data, quantidadeConvidados, espacoEvento, tipoEvento, CategoriaEvento.Livre);
+            Console.WriteLine("\nAgora vou precisar que você escolha as quantidades de bebidas que ofereceremos em seu evento de festa: ");
+            festaLivre.ColocarBebidasEventoPorTipo(tipoEvento, festaLivre._listaBebidasFestaLivre);
+            Console.WriteLine("\nVocê já selecionou o que precisamos para gerar um orçamento para você. Estamos calculando o valor do casamento!");
+            #region Mostrar valor total da festa de aniversário
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nAqui está o valor total da sua formatura: {festaLivre.CalcularPrecoTotalFestaLivre(tipoEvento)}");
+            Console.WriteLine($"A festa de aniversário será na data: {data.ToShortDateString()}");  //exibe a data no formato apenas de data
+            Console.ResetColor();
+            #endregion
+            festaLivre.MostrarResumoFestaLivre(tipoEvento);
 
         }
 
