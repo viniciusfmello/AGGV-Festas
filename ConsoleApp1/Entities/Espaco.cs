@@ -1,21 +1,26 @@
-﻿using ConsoleApp1.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 public class Espaco
 {
-    public char nomeEspaco;
+    public string nomeEspaco;
     public double capacidadeMaxima;
-    public List<DisponibilidadeDia> disponibilidade;
+    public List<DateTime> datas;
     public double valorEspaco;
 
-    public Espaco(char nomeEspaco, int capacidadeMaxima, double valorEspaco)
+    public Espaco(string nomeEspaco, int capacidadeMaxima, double valorEspaco)
     {
         this.nomeEspaco = nomeEspaco;
         this.capacidadeMaxima = capacidadeMaxima;
         this.valorEspaco = valorEspaco;
-        this.disponibilidade = new List<DisponibilidadeDia>();
+        this.datas = new List<DateTime>();
+    }
+    public override string ToString()
+    {
+        return $"\nNome: {nomeEspaco}\nCapacidade máxima: {capacidadeMaxima}\nValor do espaço: {valorEspaco}.00\n";
+
+        
     }
 }

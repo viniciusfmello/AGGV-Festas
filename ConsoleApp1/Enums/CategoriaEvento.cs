@@ -12,6 +12,7 @@ namespace ConsoleApp1.Enums
         Formatura, 
         FestaEmpresa,
         FestaAniversario,
-        Livre
+        Livre,
+        Nulo
     }
 }
