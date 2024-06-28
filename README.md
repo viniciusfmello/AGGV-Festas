@@ -91,9 +91,6 @@ Espumante Nacional (750ml)	$80,00
 Espumante Importado (750ml)	$140,00
 
 Cervejas artesanais e espumantes importados somente estão disponíveis para casamentos do tipo Luxo e Premier.
-Para referência da quantidade de bebidas por convidado, utilize os seguintes link:
-
-https://www.casamentos.com.br/artigos/calcular-quantidade-bebidas-casamento--c5991 https://revista.icasei.com.br/como-calcular-a-quantidade-de-bebidas-para-festa-do-casamento/
 
 Cálculo do Preço da Festa
  
